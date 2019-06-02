@@ -33,6 +33,7 @@ var answerList = {
 
 }
 
+//list of correct answers to be compared to with the choice answers
 var actualAnswer = {
     1:["Clock"],
     2:["Oxygen"],
@@ -74,31 +75,33 @@ function nextQuestion(){
     
 }
 
+
 $(".choice").on("click", function() {
 console.log(Object.values(actualAnswer[i])[0]);
 
 console.log($(event.target).text());
 if(String($(event.target).text()) === String(Object.values(actualAnswer[i])[0])){
+    $(".choiceOptions").hide();
+    $("#question").hide();
+
+    $(".answerResult").text("You got it correct!");
     correct++;
     console.log('correct '+correct);
+
 
 }else{
     incorrect++; 
     console.log('incorrect '+incorrect);
-}
-i++;
-console.log('i   '+i)
-if(i<=10){
-    nextQuestion();
+    $("#question").hide();
+    $(".choiceOptions").hide();
+    $(".answerResult").html("You got it wrong! <br> The right answer is..." + String(Object.values(actualAnswer[i])[0]));
 }
 
 })
 
+//your results message
 
-function result(){
-
-}
-// container for questions, answers, and 3 choices 
+// container for questions, answers, and 3 choices
 
 // timer 
 

@@ -11,7 +11,7 @@ $(document).ready(function (){
     3:  "Who lived at 221B, Baker Street, London?",
     4: "What horoscope sign has a crab? ",
     5: "What’s the real name of Siddartha Gautama?",
-    6: "What type of tree stay the smallest in the world? ",
+    6: "What type of tree stays the smallest in the world?",
     7: "When did the Second World War end?", 
     8: "Where was paper invented?", 
     9: "What did the 7 dwarves do for a job?",
@@ -61,12 +61,16 @@ $(document).ready(function (){
 
     });
 
+
+    var allowedTime;
+    var intervalId;
     //asks the next question, but need to change to the next question 
     //needs to be able to be clicked on
     //after clicking, needs to have a result 
     function nextQuestion(){
     var j=0;
-
+    allowedTime = 10;
+    startCountdown();
     $("#question").text(questionList[i]);
     $("#choiceOne").html("<br>" +answerList[i][j])
     j++;
@@ -76,6 +80,34 @@ $(document).ready(function (){
     j++;
     $("#choiceFour").html("<br>" +answerList[i][j])
     
+    }
+
+
+    function startCountdown() {
+        clearInterval(intervalId);
+        intervalId = setInterval(decrement, 1000);
+    }
+
+    function decrement() {
+
+        //  Decrease number by one.
+        //if(allowedTime > 0)
+            allowedTime--;
+  
+        //  Show the number in the #show-number tag.
+        $("#display").text(allowedTime);
+  
+  
+        //  Once number hits zero...
+        if (allowedTime === 0) {
+        //  Alert the user that time is up.
+          $(".choiceOptions").hide();
+          $("#question").hide();
+          $("#answerResult").text("The correct answer is ");
+          $("#display").text('00');
+          clearInterval(intervalId);
+          setTimeout(fiveSeconds, 3000);
+        }
     }
 
 
@@ -89,30 +121,34 @@ $(document).ready(function (){
         $("#question").hide();
         $("#answerResult").text("You got it correct!");
         correct++;
-        setTimeout(fiveSeconds, 1000 * 5);
+        
+        setTimeout(fiveSeconds, 3000);
       
         console.log('correct '+correct);
-
+        clearInterval(intervalId);
         }else{
             $(".choiceOptions").hide();
             $("#question").hide();
             $("#answerResult").text("You got it wrong!");
         incorrect++; 
         console.log('incorrect '+incorrect);
-        setTimeout(fiveSeconds, 1000 * 5);
-
+        
+        setTimeout(fiveSeconds, 3000);
+        clearInterval(intervalId);
         
         }
-    i++;
+    
     })
     
-    
+    //when the player makes a choice, the result is shown and they get five seconds before the next question shows
     function fiveSeconds() {  
+        i++;
         $(".choiceOptions").show();
         $("#question").show();
-        $("#answerResult").text("");     
+        $("#answerResult").text("");
+        console.log("Inside fiveseconds  "+i);   
         console.log(nextQuestion());
-        console.log("10 seconds left");
+        
         
     }
 })
@@ -126,11 +162,6 @@ $(document).ready(function (){
 // timer 
 
 
-// if player chooses right answer, show correct screen 
-
-// if player choose wrong answer, show incorrect screen
 
 // time out message
-
-// win/lose message
 

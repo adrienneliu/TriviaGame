@@ -4,6 +4,8 @@ var incorrect = 0;
 $(document).ready(function (){
 
     // $("#timerspot").hide();
+    $("#reset").hide();
+
     //list of questions
     var questionList = {
     1: "What did the crocodile swallow in Peter Pan?",
@@ -55,6 +57,7 @@ $(document).ready(function (){
     $("#questiontext").html("");
     $("#start-click").html("");
     $("#timerspot").show();
+    $("#reset").hide();
 
     nextQuestion();
    
@@ -68,17 +71,29 @@ $(document).ready(function (){
     //needs to be able to be clicked on
     //after clicking, needs to have a result 
     function nextQuestion(){
-    var j=0;
-    allowedTime = 10;
-    startCountdown();
-    $("#question").text(questionList[i]);
-    $("#choiceOne").html("<br>" +answerList[i][j])
-    j++;
-    $("#choiceTwo").html("<br>" +answerList[i][j])
-    j++
-    $("#choiceThree").html("<br>" +answerList[i][j])
-    j++;
-    $("#choiceFour").html("<br>" +answerList[i][j])
+        if(i>=11){
+            $(".choiceOptions").hide();
+            $("#question").hide();
+            $("#answerResult").text("Correct Answers "+ correct+ "| Incorrect Answers "+ incorrect);
+            i = 0;
+            $("#reset").show().on("click", function() {
+                fiveSeconds();
+            });
+
+        }else if(i <= 10){
+            var j=0;
+        allowedTime = 10;
+        startCountdown();
+        $("#question").text(questionList[i]);
+        $("#choiceOne").html("<br>" +answerList[i][j])
+        j++;
+        $("#choiceTwo").html("<br>" +answerList[i][j])
+        j++
+        $("#choiceThree").html("<br>" +answerList[i][j])
+        j++;
+        $("#choiceFour").html("<br>" +answerList[i][j])
+        }
+        
     
     }
 
@@ -103,7 +118,7 @@ $(document).ready(function (){
         //  Alert the user that time is up.
           $(".choiceOptions").hide();
           $("#question").hide();
-          $("#answerResult").text("The correct answer is ");
+          $("#answerResult").text("The correct answer is " + String(Object.values(actualAnswer[i])[0]));
           $("#display").text('00');
           clearInterval(intervalId);
           setTimeout(fiveSeconds, 3000);
@@ -146,6 +161,7 @@ $(document).ready(function (){
         $(".choiceOptions").show();
         $("#question").show();
         $("#answerResult").text("");
+        $("#reset").hide();
         console.log("Inside fiveseconds  "+i);   
         console.log(nextQuestion());
         

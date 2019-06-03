@@ -3,8 +3,9 @@ var correct = 0;
 var incorrect = 0;
 $(document).ready(function (){
 
+    // $("#timerspot").hide();
     //list of questions
-var questionList = {
+    var questionList = {
     1: "What did the crocodile swallow in Peter Pan?",
     2: "What did Joseph Priesley discover in 1774?",
     3:  "Who lived at 221B, Baker Street, London?",
@@ -16,10 +17,10 @@ var questionList = {
     9: "What did the 7 dwarves do for a job?",
     10: "Which planet is nearest the sun? "
 
-}
+    }
 
     //list of answers
-var answerList = {
+    var answerList = {
     1: ["Clock","Meat","Phone","Tinkerbell"],  
     2: ["Oxygen","Hydrogen","Carbon","Helium"] ,
     3: ["Sherlock","The Doctor","TinTin","Agatha Christie"],
@@ -31,10 +32,10 @@ var answerList = {
     9:["Cave Diving","Gardener","Nothing","Miners"],
     10:["Mercury","Mars","Venus","Pluto"], 
 
-}
+    }
 
-//list of correct answers to be compared to with the choice answers
-var actualAnswer = {
+    //list of correct answers to be compared to with the choice answers
+    var actualAnswer = {
     1:["Clock"],
     2:["Oxygen"],
     3:["Sherlock"],
@@ -45,21 +46,25 @@ var actualAnswer = {
     8:["Genoa"],
     9:["Miners"],
     10:["Mercury"],
-}
+    }
 
 
-// start/intro - clicking on it gets rid of the intro and displays the first question 
-$("#start-click").on("click", function() {
+
+    // start/intro - clicking on it gets rid of the intro and displays the first question 
+    $("#start-click").on("click", function() {
     $("#questiontext").html("");
     $("#start-click").html("");
-    nextQuestion();
-    
-});
+    $("#timerspot").show();
 
-//asks the next question, but need to change to the next question 
-//needs to be able to be clicked on
-//after clicking, needs to have a result 
-function nextQuestion(){
+    nextQuestion();
+   
+
+    });
+
+    //asks the next question, but need to change to the next question 
+    //needs to be able to be clicked on
+    //after clicking, needs to have a result 
+    function nextQuestion(){
     var j=0;
 
     $("#question").text(questionList[i]);
@@ -71,33 +76,48 @@ function nextQuestion(){
     j++;
     $("#choiceFour").html("<br>" +answerList[i][j])
     
+    }
 
+
+    $(".choice").on("click", function() {
+        console.log(Object.values(actualAnswer[i])[0]);
+
+        console.log($(event.target).text());
+
+        if(String($(event.target).text()) === String(Object.values(actualAnswer[i])[0])){
+        $(".choiceOptions").hide();
+        $("#question").hide();
+        $("#answerResult").text("You got it correct!");
+        correct++;
+        setTimeout(fiveSeconds, 1000 * 5);
+      
+        console.log('correct '+correct);
+
+        }else{
+            $(".choiceOptions").hide();
+            $("#question").hide();
+            $("#answerResult").text("You got it wrong!");
+        incorrect++; 
+        console.log('incorrect '+incorrect);
+        setTimeout(fiveSeconds, 1000 * 5);
+
+        
+        }
+    i++;
+    })
     
-}
-
-
-$(".choice").on("click", function() {
-console.log(Object.values(actualAnswer[i])[0]);
-
-console.log($(event.target).text());
-if(String($(event.target).text()) === String(Object.values(actualAnswer[i])[0])){
-    $(".choiceOptions").hide();
-    $("#question").hide();
-
-    $(".answerResult").text("You got it correct!");
-    correct++;
-    console.log('correct '+correct);
-
-
-}else{
-    incorrect++; 
-    console.log('incorrect '+incorrect);
-    $("#question").hide();
-    $(".choiceOptions").hide();
-    $(".answerResult").html("You got it wrong! <br> The right answer is..." + String(Object.values(actualAnswer[i])[0]));
-}
-
+    
+    function fiveSeconds() {  
+        $(".choiceOptions").show();
+        $("#question").show();
+        $("#answerResult").text("");     
+        console.log(nextQuestion());
+        console.log("10 seconds left");
+        
+    }
 })
+
+
 
 //your results message
 
@@ -113,4 +133,4 @@ if(String($(event.target).text()) === String(Object.values(actualAnswer[i])[0]))
 // time out message
 
 // win/lose message
-})
+

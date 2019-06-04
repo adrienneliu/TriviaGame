@@ -6,19 +6,19 @@ $(document).ready(function () {
 
     $(".timer").hide();
     $("#reset").hide();
-    $("#photo").hide();
+    // $("#photo").hide();
 
     //list of questions
     var questionList = {
         1: "What did the crocodile swallow in Peter Pan?",
         2: "What did Joseph Priesley discover in 1774?",
         3: "Who lived at 221B, Baker Street, London?",
-        4: "What horoscope sign has a crab? ",
+        4: "Which horoscope sign has a crab? ",
         5: "What’s the real name of Siddartha Gautama?",
         6: "What type of tree stays the smallest in the world?",
         7: "When did the Second World War end?",
         8: "Where was paper invented?",
-        9: "What did the 7 dwarves do for a job?",
+        9: "What did the 7 dwarves do for a living?",
         10: "Which planet is nearest the sun? "
 
     }
@@ -26,11 +26,11 @@ $(document).ready(function () {
     //list of answers
     var answerList = {
         1: ["Clock", "Meat", "Phone", "Tinkerbell"],
-        2: ["Oxygen", "Hydrogen", "Carbon", "Helium"],
-        3: ["Sherlock", "The Doctor", "TinTin", "Agatha Christie"],
+        2: ["Hydrogen", "Carbon", "Oxygen", "Helium"],
+        3: ["The Doctor", "TinTin", "Agatha Christie", "Sherlock"],
         4: ["Aquarius", "Cancer", "Pisces", "Virgo"],
-        5: ["Buddha", "Dalai Lama", "Rinpoche", "Gendun Chopel"],
-        6: ["Bonsai", "Dwarf Willow", "Hyperion", "Banyan"],
+        5: ["Dalai Lama", "Buddha", "Rinpoche", "Gendun Chopel"],
+        6: ["Dwarf Willow", "Hyperion", "Bonsai", "Banyan"],
         7: ["1945", "1942", "1939", "1918"],
         8: ["Egypt", "China", "India", "Japan"],
         9: ["Cave Diving", "Gardener", "Nothing", "Miners"],
@@ -52,6 +52,8 @@ $(document).ready(function () {
         10: ["Mercury"],
     }
 
+    var photoURL = "https://media1.giphy.com/media/a9xhxAxaqOfQs/giphy.gif"
+  
 
 
     // start/intro - clicking on it gets rid of the intro and displays the first question 
@@ -62,8 +64,6 @@ $(document).ready(function () {
         $("#reset").hide();
 
         nextQuestion();
-
-
     });
 
 
@@ -84,8 +84,8 @@ $(document).ready(function () {
 
         } else if (i <= 10) {
             var j = 0;
-            $("#display").text(10)
-            allowedTime = 10;
+            $("#display").text(30)
+            allowedTime = 30;
             startCountdown();
             $("#question").text(questionList[i]);
             $("#choiceOne").html("<br>" + answerList[i][j])
@@ -129,9 +129,9 @@ $(document).ready(function () {
 
 
     $(".choice").on("click", function () {
-        console.log(Object.values(actualAnswer[i])[0]);
+        // console.log(Object.values(actualAnswer[i])[0]);
 
-        console.log($(event.target).text());
+        // console.log($(event.target).text());
 
         if (String($(event.target).text()) === String(Object.values(actualAnswer[i])[0])) {
             $(".choiceOptions").hide();
@@ -147,11 +147,8 @@ $(document).ready(function () {
             $(".choiceOptions").hide();
             $("#question").hide();
             $("#answerResult").html("You got it wrong!" + "<p>" + "The correct answer was " + String(Object.values(actualAnswer[i])[0]));
-            $("#photo").show().append(function() {
-                $(this).attr("src", "https://media1.giphy.com/media/a9xhxAxaqOfQs/giphy.gif")
-            })
             incorrect++;
-            console.log('incorrect ' + incorrect);
+           
 
             setTimeout(fiveSeconds, 3000);
             clearInterval(intervalId);
@@ -167,11 +164,12 @@ $(document).ready(function () {
         $("#question").show();
         $("#answerResult").text("");
         $("#reset").hide();
-        console.log("Inside fiveseconds  " + i);
-        console.log(nextQuestion());
-
-
+     
+      
+       nextQuestion();
+   
     }
+
 })
 
 

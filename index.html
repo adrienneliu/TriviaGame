@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-  
+
     <title>Trivia Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -13,7 +15,7 @@
 
 
 <body>
-    <script src="assets/javascript/app.js"></script>
+    
 
 
     <div class="container pt-2 mt-5 text-center">
@@ -21,36 +23,41 @@
 
         <!--Introduction-->
         <div id="questiontext">
-            <p>पढाए हिंदी रहारुप अनुवाद कार्यलय मुख्य संस्था सोफ़तवेर निरपेक्ष उनका </p>
-            <p>आपके बाटते आशाआपस मुख्यतह उशकी करता। शुरुआत संस्था कुशलता मेंभटृ </p>
-            <p>अनुवाद गएआप विशेष सकते परिभाषित लाभान्वित प्रति देकर </p>
-            <p>समजते दिशामे प्राप्त जैसे वर्णन संस्थान निर्माता प्रव्रुति भाति चुनने उपलब्ध बेंगलूर अर्थपुर्ण </p>
+          <p> You will have 30 seconds to answer some random questions. </p>
+          <p> Are you ready?</p>
+          <p> If so, click start! </p>
+          <p> Good luck!</p>
         </div>
-            <p id="start-click">START</p>
-            
-            00:<span id="display">00</span>
-            <br>
-            <span id="question"></span>
+        <p id="start-click">START</p>
+
+        <div class="timer">
+            Time remaining: <span id="display">10</span> seconds
+        </div>
+
+        <span id="question"></span>
+
         <div class="choiceOptions">
             <span class="choice" id="choiceOne"></span>
             <span class="choice" id="choiceTwo"></span>
             <span class="choice" id="choiceThree"></span>
             <span class="choice" id="choiceFour"></span>
         </div>
+
         <p id="answerResult"></p>
-        <button id="reset">Restart</button>
+        <span id="reset">Restart</button>
 
 
 
 
-<p></p>
+        <p></p>
         <img src="https://cdn.dribbble.com/users/1239720/screenshots/3633556/popcorn.gif" width="300px" id="photo">
 
-    
-    </div>
-  
-    
 
-    
+    </div>
+
+
+    <script src="assets/javascript/app.js"></script>
+
 </body>
+
 </html>

@@ -1,14 +1,39 @@
 body {
-    background-image: url("https://thumbs.gfycat.com/AmusingBlushingIrishwaterspaniel-size_restricted.gif");
+    background-image: url("https://media.giphy.com/media/1AeegrwlrTpWVmQSBB/giphy.gif");
     background-size: 100%;
+    font-family: ;
+    font-size: 30pt;
+    padding-top: 5%;
+}
+.container {
+    height: 550px;
 }
 
+h1 {
+    font-size: 45pt;
+}
 .container {
     background-color: #EBDEF0;
     opacity: 0.7; 
 }
 
 
-.choice:hover {
-    font-style: italic;
+#start-click:hover, #reset:hover, .choice:hover {
+    font-style: space;
+    letter-spacing: 5px;
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
+}
+
+#start-click {
+    text-align: center;
+    top: 50px;
+    font-family: 'Anton', sans-serif;
+    transform: translateY(150%);
+}
+
+#choiceOne {
+    padding-top: 5px;
 }
